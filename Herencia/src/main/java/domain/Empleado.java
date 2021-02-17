@@ -14,13 +14,17 @@ public class Empleado extends Persona {
     protected static int contadorEmpleado;
 
     public Empleado() {
-
+        this.idEmpleado = ++Empleado.contadorEmpleado;
     }
 
     public Empleado(String nombre, double sueldo) {
-        super(nombre);
-        this.idEmpleado = ++Empleado.contadorEmpleado;
-        this.sueldo = sueldo;
+        //super(nombre);
+        //Ya no utilizaremos super para inicializar el atributo nombre
+        //Llamamos al constructor vacío con this();
+        this();
+        //No se puede tener super y this el mismo tiempo
+        this.nombre = nombre; //Pertenece a la clase padre
+        this.sueldo = sueldo; //Pertenece a la clase hija
     }
 
     public int getIdEmpleado() {
@@ -41,7 +45,7 @@ public class Empleado extends Persona {
         sb.append("Empleado{idEmpleado=").append(this.idEmpleado);
 //        sb.append(", nombre=").append(this.nombre);
         sb.append(", sueldo=").append(this.sueldo);
-        sb.append(", Persona").append(super.toString());
+        sb.append(", ").append(super.toString());
         sb.append('}');
         return sb.toString();
     }
